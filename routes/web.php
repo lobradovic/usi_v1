@@ -25,3 +25,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('/')
     ->middleware('auth')
     ->group(function () {});
+
+
+Route::resource('jelos', App\Http\Controllers\JeloController::class);
