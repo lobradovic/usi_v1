@@ -20,7 +20,7 @@ class StatusStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['required'],
+            'naziv_statusa' => ['required'],
         ];
     }
 }
