@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RezervacijaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -28,3 +29,8 @@ Route::prefix('/')
 
 
 Route::resource('jelos', App\Http\Controllers\JeloController::class);
+
+Route::post('/korpa/dodaj/{id}', [RezervacijaController::class, 'dodaj'])->name('korpa.dodaj');
+Route::get('/korpa', [RezervacijaController::class, 'prikazi'])->name('korpa.prikazi');
+Route::post('/korpa/izvrsi', [RezervacijaController::class, 'izvrsi'])->name('korpa.izvrsi');
+Route::post('/korpa/obrisi/{id}', [RezervacijaController::class, 'obrisi'])->name('korpa.obrisi');

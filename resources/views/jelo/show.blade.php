@@ -1,7 +1,8 @@
-{{--
-    @extends('layouts.app')
+@extends('layouts.app')
+@section('content')
 
-    @section('content')
-        jelo.show template
-    @endsection
---}}
+<h1>{{ $jelo->naziv_jela }}</h1>
+<p>{{ $jelo->cena }}</p>
+<p>{{ $jelo->opis }}</p>
+@endsection
+

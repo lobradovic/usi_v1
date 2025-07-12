@@ -17,6 +17,13 @@
                     <td>{{ $jelo->naziv_jela }}</td>
                     <td>{{ $jelo->cena }}</td>
                     <td>{{ $jelo->opis }}</td>
+                    <td><a href={{ route('jelos.show',$jelo->id) }}>Detaljnije</a></td>
+                    <td>
+                        <form method="POST" action="{{ route('korpa.dodaj', $jelo->id) }}">
+                            @csrf
+                            <button type="submit">Dodaj u korpu</button>
+                        </form>                        
+                    </td>
                 </tr>
             @endforeach
         </tbody>

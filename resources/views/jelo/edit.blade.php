@@ -3,7 +3,7 @@
 @section('content')
 <form action="{{ route('jelos.update', $jelo->id) }}" method="POST">
     @csrf
-    @method('PUT') {{-- ili PATCH, po dogovoru --}}
+    @method('PUT')
 
     @if ($errors->any())
         <div style="color:red;">
