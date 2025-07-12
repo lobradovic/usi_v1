@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RezervacijaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JeloController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,29 +18,26 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[JeloController::class,'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [JeloController::class, 'index'])->name('home');
 
 Route::prefix('/')
     ->middleware('auth')
     ->group(function () {});
 
-
-Route::resource('jelos', App\Http\Controllers\JeloController::class);
-
+Route::resource('admin',AdminController::class);
 Route::post('/korpa/dodaj/{id}', [RezervacijaController::class, 'dodaj'])->name('korpa.dodaj');
 Route::get('/korpa', [RezervacijaController::class, 'prikazi'])->name('korpa.prikazi');
 Route::post('/korpa/izvrsi', [RezervacijaController::class, 'izvrsi'])->name('korpa.izvrsi');
 Route::post('/korpa/obrisi/{id}', [RezervacijaController::class, 'obrisi'])->name('korpa.obrisi');
-
 
 Route::resource('jelos', App\Http\Controllers\JeloController::class);
 
 Route::resource('roles', App\Http\Controllers\RoleController::class);
 
 Route::resource('statuses', App\Http\Controllers\StatusController::class);
+
+Route::resource('users', App\Http\Controllers\UserController::class)->except('create', 'store', 'show');

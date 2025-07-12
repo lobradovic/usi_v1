@@ -5,3 +5,18 @@ controllers:
     resource
   Status:
     resource
+  User:
+    index:
+      render: users.index with user,roles
+    edit:
+      render: users.edit with:user,roles
+    update:
+      validate: role_id => nullable|exists:roles,id
+      update: user
+    destroy:
+      delete: user
+      redirect: users.index
+
+routes:
+  web:
+    resource: users

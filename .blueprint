@@ -2,13 +2,18 @@ created:
     - app/Http/Controllers/JeloController.php
     - app/Http/Controllers/RoleController.php
     - app/Http/Controllers/StatusController.php
+    - app/Http/Controllers/UserController.php
     - tests/Feature/Http/Controllers/JeloControllerTest.php
     - tests/Feature/Http/Controllers/RoleControllerTest.php
     - tests/Feature/Http/Controllers/StatusControllerTest.php
-    - app/Http/Requests/RoleStoreRequest.php
-    - app/Http/Requests/RoleUpdateRequest.php
-    - app/Http/Requests/StatusStoreRequest.php
-    - app/Http/Requests/StatusUpdateRequest.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/jelo/index.blade.php
+    - resources/views/jelo/create.blade.php
+    - resources/views/jelo/show.blade.php
+    - resources/views/jelo/edit.blade.php
     - resources/views/role/index.blade.php
     - resources/views/role/create.blade.php
     - resources/views/role/show.blade.php
@@ -17,10 +22,5 @@ created:
     - resources/views/status/create.blade.php
     - resources/views/status/show.blade.php
     - resources/views/status/edit.blade.php
-updated:
-    - routes/web.php
-skipped:
-    - resources/views/jelo/index.blade.php
-    - resources/views/jelo/create.blade.php
-    - resources/views/jelo/show.blade.php
-    - resources/views/jelo/edit.blade.php
+    - resources/views/users/index.blade.php
+    - resources/views/users/edit.blade.php
