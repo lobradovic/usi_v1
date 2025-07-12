@@ -13,18 +13,12 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Apps <span class="caret"></span>
-                        </a>
-                        
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        </div>
-
-                    </li>
+                    @if(auth()->user()->role && auth()->user()->role->naziv_role === 'Admin')
+                        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+                    @endif
+                    @if(auth()->user()->role && auth()->user()->role->naziv_role === 'Menadzer')
+                        <li><a href="{{ route('menadzer.index') }}">Admin</a></li>
+                    @endif
                 @endauth
             </ul>
 

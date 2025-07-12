@@ -8,7 +8,7 @@ use App\Models\Jelo;
 
 class RezervacijaController extends Controller
 {
- public function dodaj(Request $request, $id)
+    public function dodaj(Request $request, $id)
     {
 
         $jelo = Jelo::findOrFail($id);
@@ -44,31 +44,31 @@ class RezervacijaController extends Controller
         return redirect()->route('korpa.prikazi');
     }
 
-public function izvrsi(Request $request)
-{
-    $korpa = session()->get('korpa');
+    public function izvrsi(Request $request)
+    {
+        $korpa = session()->get('korpa');
 
-    if (!$korpa || empty($korpa)) {
-        return redirect()->back()->with('error', 'Korpa je prazna!');
-    }
+        if (!$korpa || empty($korpa)) {
+            return redirect()->back()->with('error', 'Korpa je prazna!');
+        }
 
-    $porudzbina = Rezervacija::create([
-        'datum' => $request->input('datum'),
-        'adresa' => $request->input('adresa'),
-        'status' => 1,
-        'user_id'=>auth()->id()
-    ]);
-
-    foreach ($korpa as $jeloId => $stavka) {
-        $porudzbina->stavkas()->create([
-            'jelo_id' => $jeloId,
-            'trenutna_cena' => $stavka['cena']
+        $porudzbina = Rezervacija::create([
+            'datum' => $request->input('datum'),
+            'adresa' => $request->input('adresa'),
+            'status' => 1,
+            'user_id'=>auth()->id()
         ]);
+
+        foreach ($korpa as $jeloId => $stavka) {
+            $porudzbina->stavkas()->create([
+                'jelo_id' => $jeloId,
+                'trenutna_cena' => $stavka['cena']
+            ]);
+        }
+
+        session()->forget('korpa');
+
+        return redirect('/')->with('success', 'Porudžbina sačuvana u bazi!');
     }
-
-    session()->forget('korpa');
-
-    return redirect('/')->with('success', 'Porudžbina sačuvana u bazi!');
-}
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RezervacijaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -29,6 +30,9 @@ Route::prefix('/')
     ->group(function () {});
 
 Route::resource('admin',AdminController::class);
+Route::resource('manager',ManagerController::class)->parameters(['manager' => 'rezervacija']);
+
+
 Route::post('/korpa/dodaj/{id}', [RezervacijaController::class, 'dodaj'])->name('korpa.dodaj');
 Route::get('/korpa', [RezervacijaController::class, 'prikazi'])->name('korpa.prikazi');
 Route::post('/korpa/izvrsi', [RezervacijaController::class, 'izvrsi'])->name('korpa.izvrsi');
