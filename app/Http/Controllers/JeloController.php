@@ -20,6 +20,15 @@ class JeloController extends Controller
         ]);
     }
 
+    public function admin(Request $request):View
+    {
+        $jelos = Jelo::all();
+
+        return view('jelo.admin', [
+            'jelos' => $jelos,
+        ]);        
+    }
+
     public function create(Request $request): View
     {
         return view('jelo.create');

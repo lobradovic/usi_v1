@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('stavkas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('trenutna_cena');
+            $table->integer('kolicina');
             $table->unsignedBigInteger('rezervacija_id');
             $table->unsignedBigInteger('jelo_id');
 

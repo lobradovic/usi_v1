@@ -24,6 +24,7 @@ class StavkaFactory extends Factory
     {
         return [
             'trenutna_cena' => $this->faker->randomNumber(0),
+            'kolicina' => $this->faker->randomNumber(nbDigits: 1),
             'rezervacija_id' => \App\Models\Rezervacija::factory(),
             'jelo_id' => \App\Models\Jelo::factory(),
         ];

@@ -11,7 +11,12 @@ class Stavka extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['trenutna_cena', 'rezervacija_id', 'jelo_id'];
+    protected $fillable = [
+        'trenutna_cena',
+        'kolicina',
+        'rezervacija_id',
+        'jelo_id',
+    ];
 
     protected $searchableFields = ['*'];
 
