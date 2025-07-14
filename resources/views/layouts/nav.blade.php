@@ -9,6 +9,7 @@
                 @auth
 
                     <a href="{{ route('rezervacijas.index') }}" class="dugme">Moje rezervacije</a>
+                    <a href="{{ route('korpa.prikazi') }}" class="dugme">Korpa</a>
 
                     @if(auth()->user()->role->naziv_role === 'Admin')
 
