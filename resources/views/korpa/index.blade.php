@@ -6,15 +6,18 @@
     <p>Korpa je prazna.</p>
 @else
     <ul>
-        @foreach($korpa as $id => $item)
-            <li>
-                {{ $item['naziv_jela'] }} - {{ $item['cena'] }} RSD
-                {{ $item['opis'] }}
-                <form method="POST" action="{{ route('korpa.obrisi', $id) }}" style="display:inline;">
+        @foreach($korpa as $id => $stavka)
+            <div>
+                <h4>{{ $stavka['naziv_jela'] }}</h4>
+                <p>Cena: {{ $stavka['cena'] }} RSD</p>
+                <p>Opis: {{ $stavka['opis'] }}</p>
+
+                <form action="{{ route('korpa.izmeniKolicinu', $id) }}" method="POST">
                     @csrf
-                    <button type="submit">Ukloni</button>
+                    <input type="number" name="kolicina" value="{{ $stavka['kolicina'] }}" min="0" />
+                    <button type="submit">Izmeni količinu</button>
                 </form>
-            </li>
+            </div>
         @endforeach
     </ul>
     <form method="POST" action="{{ route('korpa.izvrsi') }}">

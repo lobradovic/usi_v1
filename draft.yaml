@@ -5,6 +5,8 @@ controllers:
     resource
   Status:
     resource
+  Rezervacija:
+    resource
   User:
     index:
       render: users.index with user,roles
