@@ -7,6 +7,7 @@ use App\Http\Requests\RezervacijaUpdateRequest;
 use App\Models\Rezervacija;
 use App\Models\Jelo;
 use App\Models\Status;
+use App\Models\Stavka;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;

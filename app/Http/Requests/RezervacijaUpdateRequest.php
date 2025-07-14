@@ -20,7 +20,8 @@ class RezervacijaUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rezervacija' => ['required'],
+            'datum' => ['required'],
+            'adresa'=>['required']
         ];
     }
 }
