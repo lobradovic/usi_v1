@@ -3,19 +3,31 @@
 @section('content')
 <h1>Podaci o rezervaciji</h1>
 
-<p>ID rezervacije: {{ $rez->id }}</p>
-<p>Ime klijenta: {{ $rez->user->name }}</p>
-<p>Prezime klijenta: {{ $rez->user->surname }}</p>
-<p>Telefon: {{ $rez->user->phone }}</p>
-<p>Adresa: {{ $rez->adresa }}</p>
-<p>Datum: {{ $rez->datum }}</p>
-<div class="form">
-    <form action="{{ route('manager.update',$rez->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+ 
+    <p>ID rezervacije: {{ $rezervacija->id }}</p>
+    <p>Ime klijenta: {{ $rezervacija->user->name }}</p>
+    <p>Prezime klijenta: {{ $rezervacija->user->surname }}</p>
+    <p>Telefon: {{ $rezervacija->user->phone }}</p>
+    <p>Adresa: {{ $rezervacija->adresa }}</p>
+    <p>Datum: {{ $rezervacija->datum }}</p>
+
+    <form action="{{ route('manager.update',$rezervacija->id) }}" method="POST">
+        <div class="form">
+            @csrf
+            @method('PUT')
+
+        <input type="hidden" name="id" value="{{ $rezervacija->id }}">
+        <input type="hidden" name="user_id" value="{{ $rezervacija->user_id }}">
+        <input type="hidden" name="adresa" value="{{ $rezervacija->adresa }}">
+        <input type="hidden" name="datum" value="{{ $rezervacija->datum->format('Y-m-d') }}">
+
         <div class="formField">
             <label for="">Status rezervacije</label>
-            <select name="" id=""></select>
+            <select name="status_id" id="">
+                @foreach($status as $s)
+                <option value="{{$s->id }}"  {{ $s->id == $rezervacija->status_id ? 'selected' : '' }}>{{$s->naziv_statusa  }} </option>
+                @endforeach
+            </select>
         </div>
         <div class="formField">
             <button type="submit">Potvrdi</button>

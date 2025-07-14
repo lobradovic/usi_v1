@@ -6,15 +6,19 @@ use App\Http\Requests\RezervacijaStoreRequest;
 use App\Http\Requests\RezervacijaUpdateRequest;
 use App\Models\Rezervacija;
 use App\Models\Jelo;
+use App\Models\Status;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Auth;
 
 class RezervacijaController extends Controller
 {
     public function index(Request $request): View
     {
-        $rezervacijas = Rezervacija::all();
+        $userId = Auth::id();
+
+        $rezervacijas = Rezervacija::where('user_id', $userId)->get();
 
         return view('rezervacija.index', [
             'rezervacijas' => $rezervacijas,
@@ -152,5 +156,32 @@ class RezervacijaController extends Controller
         }
 
         return redirect()->route('korpa.prikazi')->with('success', 'Količina artikla je ažurirana.');
+    }
+
+    public function manager(Request $request): View
+    {
+        $rez=Rezervacija::all();
+        return view('manager.index',['rez'=>$rez]);
+    }
+
+    public function managerEdit(Request $request, $id): View
+    {
+        $rezervacija=Rezervacija::findOrFail($id);
+        $status=Status::all();
+        return view('manager.edit', [
+            'rezervacija' => $rezervacija,
+            'status'=>$status
+        ]);
+    }
+
+    public function managerUpdate(Request $request, $id): RedirectResponse
+    {
+        $rez=Rezervacija::findOrFail($id);
+        $rez->update($request->only(['status_id']));
+        $rez->save();
+
+        $request->session()->flash('rezervacija.id', $rez->id);
+
+        return redirect()->route('manager.index');
     }
 }

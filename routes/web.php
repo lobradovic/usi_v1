@@ -29,8 +29,13 @@ Route::prefix('/')
     ->middleware('auth')
     ->group(function () {});
 
+//ruta koja otvara admin panel
 Route::resource('admin',AdminController::class);
-Route::resource('manager',ManagerController::class)->parameters(['manager' => 'rezervacija']);
+
+//rute za menadzerske akcije, pregled narudzbi, detalji o narudzbi, izmena narudzbi i brisanje narudzbi
+Route::get('/manager',[RezervacijaController::class,'manager'])->name('manager.index');
+Route::get('manager/{id}/edit',[RezervacijaController::class,'managerEdit'])->name('manager.edit');
+Route::put('manager/{id}/update',[RezervacijaController::class,'managerUpdate'])->name('manager.update');
 
 
 Route::post('/korpa/dodaj/{id}', [RezervacijaController::class, 'dodaj'])->name('korpa.dodaj');
