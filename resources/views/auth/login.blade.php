@@ -8,7 +8,7 @@
                 <div class="logo mb-3">
                     <img src="{{ asset('images/lanabelipng2.webp') }}" alt="logo">
                 </div>
-                <div class="form">
+                <div class="form regForm">
                     <div class="formField">
                         <label for="email">{{ __('E-mail adresa') }}</label>
                         <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email"
