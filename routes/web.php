@@ -31,6 +31,7 @@ Route::prefix('/')
 
 //ruta koja otvara admin panel
 Route::resource('admin',AdminController::class);
+Route::get('/admin_jelo',[JeloController::class,'admin'])->name('admin.jelo');
 
 //rute za menadzerske akcije, pregled narudzbi, detalji o narudzbi, izmena narudzbi i brisanje narudzbi
 Route::get('/manager',[RezervacijaController::class,'manager'])->name('manager.index');

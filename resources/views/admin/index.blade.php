@@ -6,7 +6,7 @@
     <div class="admin d-flex">
         <div class="adminLevo">
             <a href="{{ route('users.index') }}" class="dugme">Podaci o korisnicima</a>
-            <a href="{{ route('jelos.index') }}" class="dugme">Podaci o jelima</a>
+            <a href="{{ route('admin.jelo') }}" class="dugme">Podaci o jelima</a>
             <a href="{{ route('roles.index') }}" class="dugme">Podaci o rolama</a>
             <a href="{{ route('statuses.index') }}" class="dugme">Podaci o statusima rezervacije</a>
         </div>

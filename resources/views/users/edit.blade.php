@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="form">
+    <div class="content">
+        <h1>Podaci o korisniku</h1>
+        <div class="form">
         <form action="{{ route('users.update',$user->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <h3>Ime i prezime: {{ $user->name  }} {{ $user->surname }}</h3>
+            <h4>Ime i prezime: {{ $user->name  }} {{ $user->surname }}</h4>
             <p>E-mail: {{ $user->email }}</p>
             <p>Telefon: {{ $user->phone }}</p>
             <div class="formField">
@@ -20,9 +22,10 @@
                     </select>
             </div>
             <div class="formField">
-                <button type="submit">Potvrdi</button>
+                <button type="submit" class="dugme">Potvrdi</button>
             </div>     
         </form>
+    </div>
     </div>
 @endsection
 
