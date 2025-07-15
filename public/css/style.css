@@ -11,6 +11,14 @@ img {
   max-width: 100%;
   height: auto;
 }
+table tr td input
+{
+    width: 100%;
+}
+.razdvoj
+{
+    margin-bottom:2em
+}
 .nav
 {
     background-color: #1c1c1c;
@@ -81,6 +89,47 @@ img {
 .topPart
 {
     width: 100%;
+}
+
+.cart
+{
+    display:flex;
+    gap:10em
+}
+.cartItems div
+{
+    margin-bottom:2em;
+}
+.cartItems a
+{
+    margin-bottom:2em;
+    width:100px
+}
+.admin
+{
+    gap:10em
+}
+.admin .dugme
+{
+    width:100%;
+}
+.adminLevo
+{
+    width:30%;
+    padding:2em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap:2em;
+    height:500px;
+
+    background-color: #1c1c1c;
+    color:#f6f6f6
+}
+.adminDesno
+{
+    width:43%;
 }
 .footer
 {

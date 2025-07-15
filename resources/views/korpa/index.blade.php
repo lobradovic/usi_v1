@@ -1,36 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Tvoja korpa</h1>
-@if(empty($korpa))
-    <p>Korpa je prazna.</p>
-@else
-    <ul>
-        @foreach($korpa as $id => $stavka)
-            <div>
-                <h4>{{ $stavka['naziv_jela'] }}</h4>
-                <p>Cena: {{ $stavka['cena'] }} RSD</p>
-                <p>Opis: {{ $stavka['opis'] }}</p>
+<div class="content">
+    <h1>Korpa</h1>
+    <div class="cart">
+            <div class="cartItems">
+                <a href="{{ route('jelos.index') }}" class="dugme razdvoj">Dodaj</a>
+                @if(empty($korpa))
+                <h4>Korpa je prazna.</h4>
+                @else
+                    @foreach($korpa as $id => $stavka)
+                        <div>
+                            <h4>{{ $stavka['naziv_jela'] }}</h4>
+                            <p>Cena: {{ $stavka['cena'] }} RSD</p>
+                            <p>Opis: {{ $stavka['opis'] }}</p>
 
-                <form action="{{ route('korpa.izmeniKolicinu', $id) }}" method="POST">
+                            <form action="{{ route('korpa.izmeniKolicinu', $id) }}" method="POST">
+                                @csrf
+                                <input type="number" name="kolicina" value="{{ $stavka['kolicina'] }}" min="0" />
+                                <button type="submit" class="dugme">Izmeni količinu</button>
+                            </form>
+                            <form action="{{ route('korpa.obrisi',$id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dugme">Ukloni</button>
+                            </form>
+                        </div>
+                    @endforeach
+            </div>
+            <div class="form">
+                <h4>Detalji o rezervaciji</h4>
+                <form method="POST" action="{{ route('korpa.izvrsi') }}">
                     @csrf
-                    <input type="number" name="kolicina" value="{{ $stavka['kolicina'] }}" min="0" />
-                    <button type="submit">Izmeni količinu</button>
+                    <table>
+                        <tr>
+                            <td><label for="">Datum porudzbine</label></td>
+                            <td><input type="date" name="datum"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Adresa</label></td>
+                            <td><input type="text" name="adresa"></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit" class="dugme">Izvrši porudžbinu</button></td>
+                        </tr>
+                    </table>
                 </form>
             </div>
-        @endforeach
-    </ul>
-    <form method="POST" action="{{ route('korpa.izvrsi') }}">
-        @csrf
-        <label for="">Datum porudzbine</label>
-        <input type="date" name="datum">
-        </br>
-        
-        <label for="">Adresa</label>
-        <input type="text" name="adresa">
-        <button type="submit">Izvrši porudžbinu</button>
-    </form>
-@endif
+        @endif
 
-<a href="{{ route('jelos.index') }}">Nazad na jelovnik</a>
+    </div>
+</div>
 @endsection
