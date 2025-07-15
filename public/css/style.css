@@ -162,3 +162,42 @@ table tr td input
     width:30%;
     padding: 1em .5em
 }
+
+.loginDiv
+{
+    width:30%;
+    background-color: #1c1c1c;
+    padding: 2em 2em;
+    color:#f6f6f6;
+    margin:5em auto;
+
+}
+.loginDiv .formField
+{
+    display:flex;
+    flex-direction: column;
+    margin-bottom:2em;
+    width:100%;
+}
+.loginDiv input
+{
+    border:none;
+    border-bottom:1px solid #f6f6f6;
+    background-color: #1c1c1c;
+    margin-top:1em
+}
+.loginDiv .logo
+{
+    margin:0 auto;
+    padding-bottom:3em
+}
+.loginDiv button
+{
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.loginDiv input:focus
+{
+    background-color: #1c1c1c;
+}
