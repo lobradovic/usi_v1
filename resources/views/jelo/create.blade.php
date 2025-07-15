@@ -2,9 +2,7 @@
 @section('content')
 <div class="content">
     <h1>Novo jelo</h1>
-        <form action="{{ route('jelos.store') }}" method="POST">
-        @csrf
-        @if ($errors->any())
+    @if ($errors->any())
     <div style="color:red;">
         <ul>
             @foreach ($errors->all() as $error)
@@ -12,22 +10,24 @@
             @endforeach
         </ul>
     </div>
-@endif
-        <div class="formField">
-            <label for="">Naziv jela</label>
-            <input type="text" name="naziv_jela">
-        </div>
-        <div class="formField">
-            <label for="">Cena</label>
-            <input type="number" name="cena">
-        </div>
-        <div class="formField">
-            <label for="">Opis</label>
-            <textarea type="text" name="opis"></textarea>
-        </div>
-        <div class="formField">
-            <button type="submit">Unos</button>
-        </div>
+    @endif
+        <form action="{{ route('jelos.store') }}" method="POST">
+        @csrf
+        <table>
+            <tr>
+                <td><label for="">Naziv jela: </label></td>
+                <td><input type="text" name="naziv_jela"></td>
+            </tr>
+            <tr>
+                <td><label for="">Cena:</label></td>
+                <td><input type="text" name="cena"></td>
+            </tr>
+            <tr>
+                <td><label for="">Opis:</label></td>
+                <td><textarea name="" id="" name="opis"></textarea></td>
+            </tr>
+            <tr><td><button type="submit" class="dugme">Potvrdi</button></td></tr>
+        </table>
     </form>
 </div>
 @endsection

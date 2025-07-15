@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ route('jelos.update', $jelo->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-
+<div class="content">
+    <h1>Izmena jela</h1>
     @if ($errors->any())
         <div style="color:red;">
             <ul>
@@ -14,25 +12,25 @@
             </ul>
         </div>
     @endif
-
-    <div class="formField">
-        <label for="naziv_jela">Naziv jela</label>
-        <input type="text" name="naziv_jela" id="naziv_jela" value="{{ old('naziv_jela', $jelo->naziv_jela) }}">
-    </div>
-
-    <div class="formField">
-        <label for="cena">Cena</label>
-        <input type="number" name="cena" id="cena" value="{{ old('cena', $jelo->cena) }}">
-    </div>
-
-    <div class="formField">
-        <label for="opis">Opis</label>
-        <textarea name="opis" id="opis">{{ old('opis', $jelo->opis) }}</textarea>
-    </div>
-
-    <div class="formField">
-        <button type="submit">Sačuvaj izmene</button>
-    </div>
-</form>
+    <form action="{{ route('jelos.update', $jelo->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <table>
+            <tr>
+                <td><label for="">Naziv jela:</label></td>
+                <td><input type="text" name="naziv_jela" id="naziv_jela" value="{{ old('naziv_jela', $jelo->naziv_jela) }}"></td>
+            </tr>
+            <tr>
+                <td><label for="">Cena:</label></td>
+                <td><input type="number" name="cena" id="cena" value="{{ old('cena', $jelo->cena) }}"></td>
+            </tr>
+            <tr>
+                <td><label for="">Opis:</label></td>
+                <td><textarea name="opis" id="opis">{{ old('opis', $jelo->opis) }}</textarea></td>
+            </tr>
+            <tr><td><button type="submit" class="dugme">Potvrdi</button></td></tr>
+        </table>
+    </form>
+</div>
 @endsection
 

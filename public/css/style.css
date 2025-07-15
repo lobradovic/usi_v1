@@ -40,6 +40,11 @@ table tr td input
     gap:1em;
 
 }
+
+.content
+{
+    min-height: 400px;
+}
 .dugme
 {
     all: unset;

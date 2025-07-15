@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="form">
+<div class="content">
+    <h1>Izmena statusa</h1>
+    <div class="form">
     <form action="{{ route('statuses.update',$status->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="formField">
-            <label for="">Naziv role:</label>
-            <input type="text" name="naziv_statusa" value="{{ old('naziv_statusa', $status->naziv_statusa) }}">
-        </div>
-        <div class="formField">
-            <button type="submit">Izmeni</button>
-        </div>
+        <table>
+            <tr>
+                <td><label for="">Naziv role:</label></td>
+                <td><input type="text" name="naziv_statusa" value="{{ old('naziv_statusa', $status->naziv_statusa) }}"></td>
+            </tr>
+            <tr><td><button type="submit" class="dugme">Potvrdi</button></td></tr>
+        </table>
     </form>
+</div>
 </div>
 @endsection
 

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Menadžer</h1>
+<div class="content">
+    <h1>Menadžer</h1>
 <div class="table">
     <table>
         <thead>
@@ -24,11 +25,12 @@
                 <td>{{ $r->adresa }}</td>
                 <td>{{ $r->datum }}</td>
                 <td>{{ $r->status->naziv_statusa }}</td>
-                <td><a href="{{ route('manager.edit',$r->id) }}">Detalji</a></td>
+                <td><a href="{{ route('manager.edit',$r->id) }}" class="dugme">Detalji</a></td>
             </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 
 @endsection

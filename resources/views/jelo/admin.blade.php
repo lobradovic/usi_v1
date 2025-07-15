@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lista jela</h1>
+<div class="content">
+        <h1>Lista jela</h1>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
                 <th>Naziv jela</th>
                 <th>Cena</th>
                 <th>Opis</th>
+                <th colspan="2">Opcije</th>
             </tr>
         </thead>
         <tbody>
@@ -17,15 +19,16 @@
                     <td>{{ $jelo->naziv_jela }}</td>
                     <td>{{ $jelo->cena }}</td>
                     <td>{{ $jelo->opis }}</td>
-                    <td><a href={{ route('jelos.edit',$jelo->id) }}>Izmeni</a></td>
+                    <td><a href={{ route('jelos.edit',$jelo->id) }} class="dugme">Izmeni</a></td>
                     <td>
                         <form method="POST" action="{{ route('jelos.destroy', $jelo->id) }}">
                             @csrf
-                            <button type="submit">Obrisi</button>
+                            <button type="submit" class="dugme">Obrisi</button>
                         </form>                        
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
