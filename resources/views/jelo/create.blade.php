@@ -1,8 +1,8 @@
-
-    @extends('layouts.app')
-
-    @section('content')
-    <form action="{{ route('jelos.store') }}" method="POST">
+@extends('layouts.app')
+@section('content')
+<div class="content">
+    <h1>Novo jelo</h1>
+        <form action="{{ route('jelos.store') }}" method="POST">
         @csrf
         @if ($errors->any())
     <div style="color:red;">
@@ -29,4 +29,5 @@
             <button type="submit">Unos</button>
         </div>
     </form>
-    @endsection
+</div>
+@endsection
