@@ -24,6 +24,7 @@
                     <td>
                         <form method="POST" action="{{ route('jelos.destroy', $jelo->id) }}">
                             @csrf
+                            @method('DELETE')
                             <button type="submit" class="dugme">Obrisi</button>
                         </form>                        
                     </td>

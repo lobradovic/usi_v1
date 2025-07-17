@@ -3,6 +3,9 @@
 @section('content')
 <div class="content">
     <h1>Prikaz svih statusa</h1>
+        <div class="pageButtons d-flex">
+            <a href="{{ route('statuses.create') }}" class="dugme">Novi status</a>
+        </div>
     <div class="table">
         <table>
             <thead>

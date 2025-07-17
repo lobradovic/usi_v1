@@ -13,6 +13,10 @@ class StatusController extends Controller
 {
     public function index(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $statuses = Status::all();
 
         return view('status.index', [
@@ -22,11 +26,19 @@ class StatusController extends Controller
 
     public function create(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('status.create');
     }
 
     public function store(StatusStoreRequest $request): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $status = Status::create($request->validated());
 
         $request->session()->flash('status.id', $status->id);
@@ -36,6 +48,10 @@ class StatusController extends Controller
 
     public function show(Request $request, Status $status): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('status.show', [
             'status' => $status,
         ]);
@@ -43,6 +59,10 @@ class StatusController extends Controller
 
     public function edit(Request $request, Status $status): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('status.edit', [
             'status' => $status,
         ]);
@@ -50,6 +70,10 @@ class StatusController extends Controller
 
     public function update(StatusUpdateRequest $request, Status $status): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $status->update($request->validated());
 
         $request->session()->flash('status.id', $status->id);
@@ -59,6 +83,10 @@ class StatusController extends Controller
 
     public function destroy(Request $request, Status $status): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $status->delete();
 
         return redirect()->route('statuses.index');

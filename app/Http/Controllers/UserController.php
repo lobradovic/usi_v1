@@ -14,6 +14,10 @@ class UserController extends Controller
 {
     public function index(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $users=User::all();
         $roles=Role::all();
 
@@ -25,6 +29,10 @@ class UserController extends Controller
 
     public function edit(Request $request, User $user): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $roles=Role::all();
         return view('users.edit', [
             'user' => $user,
@@ -34,6 +42,10 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $user->update($request->validated());
 
         return redirect()->route('users.index');
@@ -41,6 +53,10 @@ class UserController extends Controller
 
     public function destroy(Request $request, User $user): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $user->delete();
 
         return redirect()->route('users.index');

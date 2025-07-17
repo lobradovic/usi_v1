@@ -166,12 +166,20 @@ class RezervacijaController extends Controller
 
     public function manager(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $rez=Rezervacija::all();
         return view('manager.index',['rez'=>$rez]);
     }
 
     public function managerEdit(Request $request, $id): View
     {
+        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $rezervacija=Rezervacija::findOrFail($id);
         $status=Status::all();
         return view('manager.edit', [
@@ -182,6 +190,10 @@ class RezervacijaController extends Controller
 
     public function managerUpdate(Request $request, $id): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $rez=Rezervacija::findOrFail($id);
         $rez->update($request->only(['status_id']));
         $rez->save();

@@ -13,6 +13,10 @@ class RoleController extends Controller
 {
     public function index(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $roles = Role::all();
 
         return view('role.index', [
@@ -22,11 +26,19 @@ class RoleController extends Controller
 
     public function create(Request $request): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('role.create');
     }
 
     public function store(RoleStoreRequest $request): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $role = Role::create($request->validated());
 
         $request->session()->flash('role.id', $role->id);
@@ -36,6 +48,10 @@ class RoleController extends Controller
 
     public function show(Request $request, Role $role): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('role.show', [
             'role' => $role,
         ]);
@@ -43,6 +59,10 @@ class RoleController extends Controller
 
     public function edit(Request $request, Role $role): View
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('role.edit', [
             'role' => $role,
         ]);
@@ -50,6 +70,10 @@ class RoleController extends Controller
 
     public function update(RoleUpdateRequest $request, Role $role): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $role->update($request->validated());
 
         $request->session()->flash('role.id', $role->id);
@@ -59,6 +83,10 @@ class RoleController extends Controller
 
     public function destroy(Request $request, Role $role): RedirectResponse
     {
+        if (auth()->user()->role->naziv_role !== 'Admin')
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $role->delete();
 
         return redirect()->route('roles.index');

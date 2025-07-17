@@ -1,7 +1,8 @@
 
     @extends('layouts.app')
-
     @section('content')
+    <div class="content">
+
         <h1>Moje rezervacije</h1>
         @if($rezervacijas->isEmpty())
         <p>Nema rezervacija.</p>
@@ -22,13 +23,21 @@
                         <td>{{ $r->adresa }}</td>
                         <td>{{ $r->datum }}</td>
                         <td>{{ $r->status->naziv_statusa }}</td>
-                        <td><a href="{{ route('rezervacijas.edit',$r->id) }}">Detalji</a></td>
-                        <td><a href="{{ route('rezervacijas.destroy',$r->id) }}">Otkazi</a></td>
+                        <td><a href="{{ route('rezervacijas.edit',$r->id) }}" class="dugme">Detalji</a></td>
+                        <td>
+                            <form action="{{ route('rezervacijas.destroy',$r->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dugme" type="submit">Otkaži</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
         @endif
+
+    </div>
     @endsection
 

@@ -3,6 +3,9 @@
 @section('content')
 <div class="content">
     <h1>Prikaz svih rola</h1>
+        <div class="pageButtons d-flex">
+            <a href="{{route('roles.create')}}" class="dugme">Nova rola</a>
+        </div>
     <div class="table">
         <table>
             <thead>
