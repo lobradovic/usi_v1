@@ -3,9 +3,15 @@
 @section('content')
 <div class="content">
     <h1>Korpa</h1>
+    <div class="pageButtons d-flex">
+        <a href="{{ route('jelos.index') }}" class="dugme razdvoj">Dodaj</a>
+        <form action="{{ route('korpa.isprazni') }}" method="post">
+            @csrf
+            <button class="dugme" type="submit"> Poništi</button>
+        </form>
+    </div>
     <div class="cart">
             <div class="cartItems">
-                <a href="{{ route('jelos.index') }}" class="dugme razdvoj">Dodaj</a>
                 @if(empty($korpa))
                 <h4>Korpa je prazna.</h4>
                 @else

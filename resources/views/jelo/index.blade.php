@@ -3,6 +3,7 @@
 @section('content')
     <div class="content">
         <h1>Prikaz svih jela</h1>
+
         <div class="menu">
             @foreach($jelos as $j)
                 <div class="menuItem">

@@ -111,7 +111,12 @@ class RezervacijaController extends Controller
 
         return redirect()->route('korpa.prikazi');
     }
+    public function isprazni()
+    {
+        session()->forget('korpa');
 
+        return redirect()->route('korpa.prikazi');
+    }
     public function izvrsi(Request $request)
     {
         $korpa = session()->get('korpa');

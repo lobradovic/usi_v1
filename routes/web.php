@@ -42,7 +42,9 @@ Route::put('manager/{id}/update',[RezervacijaController::class,'managerUpdate'])
 Route::post('/korpa/dodaj/{id}', [RezervacijaController::class, 'dodaj'])->name('korpa.dodaj');
 Route::get('/korpa', [RezervacijaController::class, 'prikazi'])->name('korpa.prikazi');
 Route::post('/korpa/izvrsi', [RezervacijaController::class, 'izvrsi'])->name('korpa.izvrsi');
-Route::post('/korpa/obrisi/{id}', [RezervacijaController::class, 'obrisi'])->name('korpa.obrisi');
+Route::post('/korpa/obrisi/{id}',[RezervacijaController::class, 'obrisi'])->name('korpa.obrisi');
+Route::post('/korpa/isprazni', [RezervacijaController::class, 'isprazni'])->name('korpa.isprazni');
+
 Route::post('/korpa/izmeni-kolicinu/{id}', [RezervacijaController::class, 'izmeniKolicinu'])->name('korpa.izmeniKolicinu');
 
 Route::resource('jelos', App\Http\Controllers\JeloController::class);

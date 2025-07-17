@@ -32,9 +32,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserUpdateRequest $request, User $user): Response
+    public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
+
+        return redirect()->route('users.index');
     }
 
     public function destroy(Request $request, User $user): RedirectResponse

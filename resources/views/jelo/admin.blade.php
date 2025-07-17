@@ -3,6 +3,7 @@
 @section('content')
 <div class="content">
         <h1>Lista jela</h1>
+        <a href="{{ route('jelos.create') }}" class="dugme">Dodaj novo</a>
 
     <table class="table">
         <thead>
