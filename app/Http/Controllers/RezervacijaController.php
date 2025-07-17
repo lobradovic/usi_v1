@@ -17,8 +17,16 @@ class RezervacijaController extends Controller
 {
     public function index(Request $request): View
     {
+        //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
+
+        //trazi id ulogovanog korisnika
         $userId = Auth::id();
 
+        //trazi rezervacije za ulogovanog korisnika
         $rezervacijas = Rezervacija::where('user_id', $userId)->get();
 
         return view('rezervacija.index', [
@@ -28,11 +36,24 @@ class RezervacijaController extends Controller
 
     public function create(Request $request): View
     {
+        //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
+        //prikazuje stranicu za kreiranje rezervacije - ne koristi se jer je implementiran sistem korpe
         return view('rezervacija.create');
     }
 
     public function store(RezervacijaStoreRequest $request): RedirectResponse
     {
+        //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
+
+        //kreiranje rezervacije
         $rezervacija = Rezervacija::create($request->validated());
 
         $request->session()->flash('rezervacija.id', $rezervacija->id);
@@ -42,6 +63,11 @@ class RezervacijaController extends Controller
 
     public function show(Request $request, Rezervacija $rezervacija): View
     {
+        //prikazuje podatke o jednoj rezervaciji
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('rezervacija.show', [
             'rezervacija' => $rezervacija,
         ]);
@@ -49,6 +75,10 @@ class RezervacijaController extends Controller
 
     public function edit(Request $request, Rezervacija $rezervacija): View
     {
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         return view('rezervacija.edit', [
             'rezervacija' => $rezervacija,
         ]);
@@ -56,6 +86,10 @@ class RezervacijaController extends Controller
 
     public function update(RezervacijaUpdateRequest $request, Rezervacija $rezervacija): RedirectResponse
     {
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $rezervacija->update($request->validated());
 
         $request->session()->flash('rezervacija.id', $rezervacija->id);
@@ -65,6 +99,11 @@ class RezervacijaController extends Controller
 
     public function destroy(Request $request, Rezervacija $rezervacija): RedirectResponse
     {
+        //brise rezervaciju
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $rezervacija->delete();
 
         return redirect()->route('rezervacijas.index');
@@ -72,11 +111,17 @@ class RezervacijaController extends Controller
 
     public function dodaj(Request $request, $id)
     {
+        //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
 
+        //trazi jelo prema prosledjenom id-u i upisuje ga u session korpa
         $jelo = Jelo::findOrFail($id);
         $korpa = session()->get('korpa', []);
 
-
+        //ako jelo vec postoji u korpi, povecaj kolicinu, u suprotnom dodaj ga u session
         if (isset($korpa[$id])) {
             $korpa[$id]['kolicina']++;
         } else {
@@ -95,15 +140,25 @@ class RezervacijaController extends Controller
 
     public function prikazi()
     {
-
+        //prikazuje stranicu korpa
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $korpa = session()->get('korpa', []);
         return view('korpa.index', compact('korpa'));
     }
 
     public function obrisi($id)
     {
+
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $korpa = session()->get('korpa', []);
 
+        //brise odabrano jelo iz korpe
         if (isset($korpa[$id])) {
             unset($korpa[$id]);
             session()->put('korpa', $korpa);
@@ -113,18 +168,31 @@ class RezervacijaController extends Controller
     }
     public function isprazni()
     {
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
+        //prazni celu korpu
         session()->forget('korpa');
 
         return redirect()->route('korpa.prikazi');
     }
     public function izvrsi(Request $request)
     {
-        $korpa = session()->get('korpa');
+        //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
 
+        $korpa = session()->get('korpa');
+        
+        //ako je korpa prazna ispisuje obavestenje
         if (!$korpa || empty($korpa)) {
             return redirect()->back()->with('error', 'Korpa je prazna!');
         }
 
+        //kreira porudzbinu sa podacima unesenim u formi
         $porudzbina = Rezervacija::create([
             'datum' => $request->input('datum'),
             'adresa' => $request->input('adresa'),
@@ -132,6 +200,7 @@ class RezervacijaController extends Controller
             'user_id'=>auth()->id()
         ]);
 
+        //upisuje svaku stavku iz korpe u tabelu sa stavkama 
         foreach ($korpa as $jeloId => $stavka) {
             $porudzbina->stavkas()->create([
                 'jelo_id' => $jeloId,
@@ -139,15 +208,22 @@ class RezervacijaController extends Controller
                 'kolicina'=>$stavka['kolicina']
             ]);
         }
-
+        //brise sesiju nakon uspesnog upisa
         session()->forget('korpa');
 
         return redirect('/')->with('success', 'Porudžbina sačuvana u bazi!');
     }
     public function izmeniKolicinu(Request $request, $id)
     {
+        //menja kolicinu jednog artikla u korpi
+
+        if (!auth()->check())
+        {
+            abort(403, 'Nemate dozvolu za pristup.');
+        }
         $korpa = session()->get('korpa', []);
 
+        //ako je nova kolicina 0 onda se artikal brise iz korpe
         if (isset($korpa[$id]))
         {
             $novaKolicina = (int) $request->input('kolicina');
@@ -166,20 +242,26 @@ class RezervacijaController extends Controller
 
     public function manager(Request $request): View
     {
+        //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
         if (auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
+
+        //prikazuje menadzer stranicu sa podacima za sve rezervacije
         $rez=Rezervacija::all();
         return view('manager.index',['rez'=>$rez]);
     }
 
     public function managerEdit(Request $request, $id): View
     {
+        //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403       
         if (auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
+
+        //otvara odabranu rezervaciju
         $rezervacija=Rezervacija::findOrFail($id);
         $status=Status::all();
         return view('manager.edit', [
@@ -190,10 +272,13 @@ class RezervacijaController extends Controller
 
     public function managerUpdate(Request $request, $id): RedirectResponse
     {
+        //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
         if (auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
+
+        //azurira status odabrane rezervacije
         $rez=Rezervacija::findOrFail($id);
         $rez->update($request->only(['status_id']));
         $rez->save();

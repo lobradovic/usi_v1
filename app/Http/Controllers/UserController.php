@@ -12,8 +12,11 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
+    //prikazuje podatke o svim korisnicima
     public function index(Request $request): View
     {
+        //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
         if (auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
