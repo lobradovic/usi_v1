@@ -20,13 +20,13 @@
                     <td>{{ $jelo->naziv_jela }}</td>
                     <td>{{ $jelo->cena }}</td>
                     <td>{{ $jelo->opis }}</td>
-                    <td><a href={{ route('jelos.edit',$jelo->id) }} class="dugme">Izmeni</a></td>
                     <td>
+                        <a href={{ route('jelos.edit',$jelo->id) }} class="dugme">Izmeni</a>
                         <form method="POST" action="{{ route('jelos.destroy', $jelo->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="dugme">Obrisi</button>
-                        </form>                        
+                        </form>     
                     </td>
                 </tr>
             @endforeach

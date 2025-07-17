@@ -1,6 +1,6 @@
 <div class="footer d-flex justify-content-around">
     <div class="footCol">
-        <img src="{{ asset('images/lanabelipng2.webp') }}" alt="logo">
+            <div class="logo"><img src="{{ asset('images/lanabelipng2.webp') }}" alt="logo"></div>
     </div>
     <div class="footCol d-flex flex-column">
         <h3>Korisni linkovi</h3>

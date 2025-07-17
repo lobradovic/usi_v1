@@ -18,13 +18,13 @@
                 <tr>
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->naziv_role }}</td>
-                    <td><a href="{{ route("roles.edit", $role->id) }}" class="dugme">Izmeni</a></td>
-                    <td>
+                    <td class="opt">
+                        <a href="{{ route("roles.edit", $role->id) }}" class="dugme">Izmeni</a>
                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="dugme">Obriši</button>
-                        </form>      
+                        </form>  
                     </td>
                 </tr>
                 @endforeach

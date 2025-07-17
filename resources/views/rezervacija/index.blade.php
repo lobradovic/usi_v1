@@ -28,8 +28,8 @@
                         <td>{{ $r->adresa }}</td>
                         <td>{{ $r->datum }}</td>
                         <td>{{ $r->status->naziv_statusa }}</td>
-                        <td><a href="{{ route('rezervacijas.edit',$r->id) }}" class="dugme">Detalji</a></td>
-                        <td>
+                        <td class="opt">
+                            <a href="{{ route('rezervacijas.edit',$r->id) }}" class="dugme">Detalji</a>
                             <form action="{{ route('rezervacijas.destroy',$r->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')

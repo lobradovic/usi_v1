@@ -1,7 +1,8 @@
 
-    @extends('layouts.app')
+@extends('layouts.app')
 
-    @section('content')
+@section('content')
+<div class="content">
     <h1>Detalji o rezervaciji</h1>
 
     @if ($errors->any())
@@ -15,17 +16,19 @@
         <form action="{{ route('rezervacijas.update',$rezervacija->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="formField">
-                <label for="">Adresa</label>
-                <input type="text" name="adresa" value="{{ $rezervacija->adresa }}">
-            </div>
-            <div class="formField">
-                <label for="">Datum</label>
-                <input type="date" name="datum" value="{{ $rezervacija->datum->format('Y-m-d') }}">
-            </div>
-            <div class="formField">
-                <button type="submit">Potvrdi</button>
-            </div>
+            <table>
+                <tr>
+                    <td><label for="">Adresa:</label></td>
+                    <td><input type="text" name="adresa" value="{{ $rezervacija->adresa }}"></td>
+                </tr>
+                <tr>
+                    <td><label for="">Datum:</label></td>
+                    <td><input type="date" name="datum" value="{{ $rezervacija->datum }}"></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="dugme">Potvrdi</button></td>
+                </tr>
+            </table>
         </form>
     </div>
     <h2>Stavke rezervacije</h2>
@@ -49,5 +52,6 @@
             </tbody>
         </table>
     </div>
-    @endsection
+</div>
+@endsection
 

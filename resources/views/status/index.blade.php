@@ -18,13 +18,13 @@
                 <tr>
                     <td>{{ $status->id }}</td>
                     <td>{{ $status->naziv_statusa }}</td>
-                    <td><a href="{{ route("statuses.edit", $status->id) }}" class="dugme">Izmeni</a></td>
-                    <td>
+                    <td class="opt">
+                        <a href="{{ route("statuses.edit", $status->id) }}" class="dugme">Izmeni</a>
                         <form method="POST" action="{{ route('statuses.destroy', $status->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="dugme">Obriši</button>
-                        </form>      
+                        </form>   
                     </td>
                 </tr>
                 @endforeach

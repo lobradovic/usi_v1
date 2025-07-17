@@ -3,10 +3,15 @@
 *{
     font-family:'Lora',serif
 }
+.dugme
+{
+    all:unset;
+}
 a{
     text-decoration: none;
     color:#f6f6f6;
 }
+.opt{display:flex}
 img {
   max-width: 100%;
   height: auto;
@@ -225,4 +230,9 @@ table tr td input
 {
     text-decoration: underline;
     color:#007bff
+}
+
+.logo
+{
+    padding:1em
 }

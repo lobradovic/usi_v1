@@ -23,8 +23,8 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{$user->role->naziv_role}}</td>
-                        <td><a href="{{ route('users.edit',$user->id) }}" class="dugme">Promeni rolu</a></td>
-                        <td>
+                        <td class="opt">
+                            <a href="{{ route('users.edit',$user->id) }}" class="dugme">Promeni rolu</a>
                             <form method="POST" action="{{ route('users.destroy', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
