@@ -157,6 +157,10 @@ table tr td input
     justify-content: space-evenly;
     padding:2em;
 }
+.footCol a
+{
+    color:#f6f6f6;
+}
 .footCol
 {
     width:30%;
@@ -204,4 +208,21 @@ table tr td input
 .loginDiv input:focus
 {
     background-color: #1c1c1c;
+}
+.logout button
+{
+    border:none;
+    color:#f6f6f6;
+    background-color:transparent;
+    text-align: left;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:0
+}
+.logout button:hover
+{
+    text-decoration: underline;
+    color:#007bff
 }
