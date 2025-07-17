@@ -4,6 +4,13 @@
 @section('content')
 <div class="content">
 <h1>Nova rola</h1>
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="form">
         <form action="{{ route('roles.store') }}" method="POST">
             @csrf

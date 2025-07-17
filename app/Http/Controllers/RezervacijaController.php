@@ -90,6 +90,7 @@ class RezervacijaController extends Controller
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
+
         $rezervacija->update($request->validated());
 
         $request->session()->flash('rezervacija.id', $rezervacija->id);
@@ -103,6 +104,12 @@ class RezervacijaController extends Controller
         if (!auth()->check())
         {
             abort(403, 'Nemate dozvolu za pristup.');
+        }
+
+        //provera da li je status primljena, ako nije onda se ne moze obrisati rezervacija
+        if($rezervacija->status->naziv_statusa!="Primljena")
+        {
+            return back()->with('error','Ne mozete obrisati ovu rezervaciju');
         }
         $rezervacija->delete();
 
@@ -192,6 +199,20 @@ class RezervacijaController extends Controller
             return redirect()->back()->with('error', 'Korpa je prazna!');
         }
 
+        //provera gresaka
+        $greske = [];
+
+        if (!$request->filled('datum')) {
+            $greske[] = 'Datum nije unet.';
+        }
+
+        if (!$request->filled('adresa')) {
+            $greske[] = 'Adresa nije uneta.';
+        }
+
+        if (!empty($greske)) {
+            return back()->withInput()->withErrors($greske);
+        }
         //kreira porudzbinu sa podacima unesenim u formi
         $porudzbina = Rezervacija::create([
             'datum' => $request->input('datum'),
@@ -260,7 +281,6 @@ class RezervacijaController extends Controller
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
-
         //otvara odabranu rezervaciju
         $rezervacija=Rezervacija::findOrFail($id);
         $status=Status::all();
@@ -280,6 +300,10 @@ class RezervacijaController extends Controller
 
         //azurira status odabrane rezervacije
         $rez=Rezervacija::findOrFail($id);
+        if($rez->status->naziv_statusa=="Izvršena")
+        {
+            return back()->with('error','Ne mozete azurirati ovu rezervaciju');
+        }
         $rez->update($request->only(['status_id']));
         $rez->save();
 

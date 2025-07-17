@@ -35,6 +35,13 @@
             </div>
             <div class="form">
                 <h4>Detalji o rezervaciji</h4>
+                @if($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $greska)
+                            <li>{{ $greska }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <form method="POST" action="{{ route('korpa.izvrsi') }}">
                     @csrf
                     <table>

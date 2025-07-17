@@ -3,7 +3,13 @@
 @section('content')
 <div class="content">
     <h1>Podaci o rezervaciji</h1>
+        @if (session('error'))
+            <ul>
+                <li>{{ session('error') }}</li>
+            </ul>
+        @endif
     <div class="d-flex" style="gap:10em">
+
         <div class="levo">
                 
             <p>ID rezervacije: {{ $rezervacija->id }}</p>

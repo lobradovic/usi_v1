@@ -4,6 +4,13 @@
 @section('content')
 <div class="content">
     <h1>Novi status</h1>
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="form">
         <form action="{{ route('statuses.store') }}" method="POST">
             @csrf

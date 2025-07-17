@@ -12,10 +12,15 @@
                         <p>{{ $j->cena }}</p>
                         <p>{{ $j->opis }}</p>
                     </div>
-                    <form method="POST" action="{{ route('korpa.dodaj', $j->id) }}">
-                        @csrf
-                        <button type="submit" class="dugme">Dodaj u korpu</button>
-                    </form>  
+                    @auth()
+                        <form method="POST" action="{{ route('korpa.dodaj', $j->id) }}">
+                            @csrf
+                            <button type="submit" class="dugme">Dodaj u korpu</button>
+                        </form>
+                    @endauth
+                    @guest
+                    <p><strong>Morate biti ulogovani za dodavanje u korpu</strong></p>
+                    @endguest
                 </div>
             @endforeach
         </div>

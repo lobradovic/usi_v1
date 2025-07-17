@@ -3,13 +3,11 @@
 <div class="content">
     <h1>Novo jelo</h1>
     @if ($errors->any())
-    <div style="color:red;">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div>
     @endif
         <form action="{{ route('jelos.store') }}" method="POST">
         @csrf

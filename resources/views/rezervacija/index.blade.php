@@ -4,6 +4,11 @@
     <div class="content">
 
         <h1>Moje rezervacije</h1>
+        @if (session('error'))
+            <ul>
+                <li>{{ session('error') }}</li>
+            </ul>
+        @endif
         @if($rezervacijas->isEmpty())
         <p>Nema rezervacija.</p>
         @else

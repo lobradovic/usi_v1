@@ -12,7 +12,7 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        Status::create(['naziv_statusa' => 'Prihvaćena']);
+        Status::create(['naziv_statusa' => 'Primljena']);
         Status::create(['naziv_statusa' => 'Potvrđena']);
         Status::create(['naziv_statusa' => 'Izvršena']);
         Status::create(['naziv_statusa' => 'Otkazana']);
