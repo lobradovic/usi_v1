@@ -1,0 +1,11 @@
+created:
+    - app/Http/Controllers/RezervacijaController.php
+    - tests/Feature/Http/Controllers/RezervacijaControllerTest.php
+    - app/Http/Requests/RezervacijaStoreRequest.php
+    - app/Http/Requests/RezervacijaUpdateRequest.php
+    - resources/views/rezervacija/index.blade.php
+    - resources/views/rezervacija/create.blade.php
+    - resources/views/rezervacija/show.blade.php
+    - resources/views/rezervacija/edit.blade.php
+updated:
+    - routes/web.php

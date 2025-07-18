@@ -1,65 +1,47 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-2">
-    <div class="container">
-        
-        <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ url('/') }}">
-            usi-v1
-        </a>
+<nav class="">
+    <div class="nav d-flex">
+        <div class="leftNav">
+            <div class="logo"><img src="{{ asset('images/lanabelipng2.webp') }}" alt="logo"></div>
+        </div>
+        <div class="rightNav">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+                    <a href="{{ route('home') }}" class="dugme">Početna</a>
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Apps <span class="caret"></span>
-                        </a>
-                        
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        </div>
 
-                    </li>
+                    <a href="{{ route('rezervacijas.index') }}" class="dugme">Moje rezervacije</a>
+                    <a href="{{ route('korpa.prikazi') }}" class="dugme">Korpa</a>
+
+                    @if(auth()->user()->role->naziv_role === 'Admin')
+
+                        <a href="{{ route('admin.index') }}" class="dugme">Admin</a>
+
+                    @elseif(auth()->user()->role->naziv_role === 'Menadžer')
+
+                        <a href="{{ route('manager.index') }}" class="dugme">Menadžer</a>
+
+                    @endif
+
                 @endauth
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
+
+
+                        <a class="dugme" href="{{ route('login') }}">{{ __('Login') }}</a>
+
                     @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+
+                            <a class="dugme" href="{{ route('register') }}">{{ __('Registracija') }}</a>
+
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
+                                <button type="submit" class="dugme">Logout</button>
                             </form>
                         </div>
-                    </li>
+
                 @endguest
-            </ul>
+
         </div>
     </div>
 </nav>

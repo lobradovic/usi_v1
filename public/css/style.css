@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+*{
+    font-family:'Lora',serif
+}
+.dugme
+{
+    all:unset;
+}
+a{
+    text-decoration: none;
+    color:#f6f6f6;
+}
+.opt{display:flex}
+img {
+  max-width: 100%;
+  height: auto;
+}
+table tr td input
+{
+    width: 100%;
+}
+.razdvoj
+{
+    margin-bottom:2em
+}
+.nav
+{
+    background-color: #1c1c1c;
+    color:#f6f6f6;
+    justify-content: space-between;
+    align-items: center;
+    padding:.5em 3em
+}
+.leftNav
+{
+    width:30%;
+}
+.rightNav
+{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    list-style-type:none;
+    gap:1em;
+
+}
+
+.content
+{
+    min-height: 400px;
+}
+.dugme
+{
+    all: unset;
+
+    width:10em;
+    padding:.5em .5em;
+    border:1px solid #f6f6f6;
+    background-color: #1c1c1c;
+    color:#f6f6f6;
+    text-align: center;
+}
+
+.dugme:hover
+{
+    background-color: #f6f6f6;
+    color:#1c1c1c;
+    text-decoration: none;
+
+    transition:all .3s ease;
+}
+
+.table table, .table table thead th, .table table td
+{
+    border-collapse: collapse;
+    border:none;
+}
+.table thead
+{
+    border-bottom: 2px solid #1c1c1c
+}
+.logo
+{
+    width:70%
+}
+
+.content
+{
+    max-width: 80%;
+    margin:0 auto;
+}
+.menu
+{
+    display:flex;
+    flex-wrap: wrap;
+    gap:5em;
+    justify-content: space-between;
+}
+.menuItem
+{
+    border:1px solid #1c1c1c;
+    width:25%;
+    height:200px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:.2em 1em;
+    justify-content: space-between;
+}
+.topPart
+{
+    width: 100%;
+}
+
+.cart
+{
+    display:flex;
+    gap:10em
+}
+.cartItems div
+{
+    margin-bottom:2em;
+}
+.cartItems a
+{
+    margin-bottom:2em;
+    width:100px
+}
+.admin
+{
+    gap:10em
+}
+.admin .dugme
+{
+    width:100%;
+}
+.adminLevo
+{
+    width:30%;
+    padding:2em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap:2em;
+    height:500px;
+
+    background-color: #1c1c1c;
+    color:#f6f6f6
+}
+.adminDesno
+{
+    width:43%;
+}
+.footer
+{
+    max-width: 100%;
+    height:35vh;
+    background-color:#1c1c1c;
+    color:#f6f6f6;
+    justify-content: space-evenly;
+    padding:2em;
+}
+.footCol a
+{
+    color:#f6f6f6;
+}
+.footCol
+{
+    width:30%;
+    padding: 1em .5em
+}
+
+.loginDiv
+{
+    width:30%;
+    background-color: #1c1c1c;
+    padding: 2em 2em;
+    color:#f6f6f6;
+    margin:5em auto;
+
+}
+.loginDiv input
+{
+    color:#f6f6f6
+}
+.loginDiv .formField
+{
+    display:flex;
+    flex-direction: column;
+    margin-bottom:2em;
+    width:100%;
+}
+.loginDiv input
+{
+    border:none;
+    border-bottom:1px solid #f6f6f6;
+    background-color: #1c1c1c;
+    margin-top:1em
+}
+.loginDiv .logo
+{
+    margin:0 auto;
+    padding-bottom:3em
+}
+.loginDiv button
+{
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.loginDiv input:focus
+{
+    background-color: #1c1c1c;
+}
+.logout button
+{
+    border:none;
+    color:#f6f6f6;
+    background-color:transparent;
+    text-align: left;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:0
+}
+.logout button:hover
+{
+    text-decoration: underline;
+    color:#007bff
+}
+
+.logo
+{
+    padding:1em
+}
