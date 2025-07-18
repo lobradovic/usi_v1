@@ -26,7 +26,7 @@ class JeloController extends Controller
     public function admin(Request $request):View
     {
         //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -39,7 +39,7 @@ class JeloController extends Controller
 
     public function create(Request $request): View
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -48,7 +48,7 @@ class JeloController extends Controller
 
     public function store(JeloStoreRequest $request): RedirectResponse
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -61,7 +61,7 @@ class JeloController extends Controller
 
     public function show(Request $request, Jelo $jelo): View
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -72,7 +72,7 @@ class JeloController extends Controller
 
     public function edit(Request $request, Jelo $jelo): View
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -83,7 +83,7 @@ class JeloController extends Controller
 
     public function update(JeloUpdateRequest $request, Jelo $jelo): RedirectResponse
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -96,7 +96,7 @@ class JeloController extends Controller
 
     public function destroy(Request $request, Jelo $jelo): RedirectResponse
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }

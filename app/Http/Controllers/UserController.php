@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index(Request $request): View
     {
         //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -32,7 +32,7 @@ class UserController extends Controller
 
     public function edit(Request $request, User $user): View
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -56,7 +56,7 @@ class UserController extends Controller
 
     public function destroy(Request $request, User $user): RedirectResponse
     {
-        if (auth()->user()->role->naziv_role !== 'Admin')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Admin')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }

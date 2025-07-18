@@ -21,7 +21,8 @@ class JeloUpdateRequest extends FormRequest
     {
         return [
             'naziv_jela' => ['required'],
-            'cena'=>['required']
+            'cena'=>['required'],
+            'opis' => ['nullable'],
         ];
     }
 }

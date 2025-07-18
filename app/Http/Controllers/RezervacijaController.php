@@ -264,7 +264,7 @@ class RezervacijaController extends Controller
     public function manager(Request $request): View
     {
         //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
-        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -277,7 +277,7 @@ class RezervacijaController extends Controller
     public function managerEdit(Request $request, $id): View
     {
         //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403       
-        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
@@ -293,7 +293,7 @@ class RezervacijaController extends Controller
     public function managerUpdate(Request $request, $id): RedirectResponse
     {
         //proverava da li je korisnik ulogovan u sistem i ima odgovarajucu rolu, ako nije salje kod 403
-        if (auth()->user()->role->naziv_role !== 'Menadžer')
+        if (!auth()->check() || auth()->user()->role->naziv_role !== 'Menadžer')
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
