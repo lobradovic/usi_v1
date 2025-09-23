@@ -153,7 +153,16 @@ class RezervacijaController extends Controller
             abort(403, 'Nemate dozvolu za pristup.');
         }
         $korpa = session()->get('korpa', []);
-        return view('korpa.index', compact('korpa'));
+
+        //prikazuje ukupnu cenu artikala u korpi
+        $total=0;
+        foreach($korpa as $k)
+        {
+            $total+=$k['cena'] * $k['kolicina'];
+        }
+
+
+        return view('korpa.index', compact('korpa','total'));
     }
 
     public function obrisi($id)
