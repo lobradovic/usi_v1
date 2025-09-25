@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{$title}}</title>
 </head>
 <body>
-    <h1>testiram</h1>
+    <h1>{{$title}}</h1>
+
+    @foreach($orders as $o)
+    <h3>{{ $o->user->name }} {{ $o->user->surname }}</h3>
+    <p>Datum: {{ $o->datum }}</p>
+    <p>Adresa: {{ $o->adresa }}</p>
+
+            <table>
+                <thead>
+                    <th>Naziv artikla</th>
+                    <th>Količina</th>
+                </thead>
+                <tbody>
+                    @foreach($o->stavkas as $s)
+                    <tr>
+                        <td>{{ $s->jelo->naziv_jela }}</td>
+                        <td>{{ $s->kolicina }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    @endforeach
 </body>
 </html>
