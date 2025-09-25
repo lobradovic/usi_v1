@@ -15,6 +15,18 @@ use Auth;
 
 class RezervacijaController extends Controller
 {
+    public function izracunajTotal($korpa)
+    {
+        //prikazuje ukupnu cenu artikala u korpi
+        $total=0;
+        foreach($korpa as $k)
+        {
+            $total+=$k['cena'] * $k['kolicina'];
+        }
+
+        return $total;
+    }
+    
     public function index(Request $request): View
     {
         //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
@@ -155,15 +167,12 @@ class RezervacijaController extends Controller
         $korpa = session()->get('korpa', []);
 
         //prikazuje ukupnu cenu artikala u korpi
-        $total=0;
-        foreach($korpa as $k)
-        {
-            $total+=$k['cena'] * $k['kolicina'];
-        }
+        $total=$this->izracunajTotal($korpa);
 
 
         return view('korpa.index', compact('korpa','total'));
     }
+
 
     public function obrisi($id)
     {
