@@ -27,6 +27,8 @@
                     @endforeach
                 </tbody>
             </table>
+        <hr>
     @endforeach
+
 </body>
 </html>

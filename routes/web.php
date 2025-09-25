@@ -58,4 +58,4 @@ Route::resource('users', App\Http\Controllers\UserController::class)->except('cr
 
 Route::resource('rezervacijas', App\Http\Controllers\RezervacijaController::class);
 
-Route::get('pdf/orders', [PDFController::class, 'generatePDF']);
+Route::get('pdf/orders', [PDFController::class, 'generatePDF'])->name('pdf.orders');
