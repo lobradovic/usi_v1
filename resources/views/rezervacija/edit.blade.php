@@ -51,6 +51,7 @@
                 @endforeach                
             </tbody>
         </table>
+        <h2>Ukupno: {{ $total }}</h2>
     </div>
 </div>
 @endsection

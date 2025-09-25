@@ -23,10 +23,9 @@ class RezervacijaController extends Controller
         {
             $total+=$k['cena'] * $k['kolicina'];
         }
-
         return $total;
     }
-    
+
     public function index(Request $request): View
     {
         //proverava da li je korisnik ulogovan u sistem, ako nije salje kod 403
@@ -75,13 +74,14 @@ class RezervacijaController extends Controller
 
     public function show(Request $request, Rezervacija $rezervacija): View
     {
+
         //prikazuje podatke o jednoj rezervaciji
         if (!auth()->check())
         {
             abort(403, 'Nemate dozvolu za pristup.');
         }
         return view('rezervacija.show', [
-            'rezervacija' => $rezervacija,
+            'rezervacija' => $rezervacija
         ]);
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JeloController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,5 @@ Route::resource('statuses', App\Http\Controllers\StatusController::class);
 Route::resource('users', App\Http\Controllers\UserController::class)->except('create', 'store', 'show');
 
 Route::resource('rezervacijas', App\Http\Controllers\RezervacijaController::class);
+
+Route::get('pdf/orders', [PDFController::class, 'generatePDF']);
