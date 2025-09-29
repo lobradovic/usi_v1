@@ -58,6 +58,8 @@
                         </tr>
                     </table>
                 </form>
+                <h2>Ukupno: {{ $total }} RSD</h2>
+                
             </div>
         @endif
 

@@ -3,6 +3,7 @@
 @section('content')
 <div class="content">
     <h1>Menadžer</h1>
+    <a href="{{ route('pdf.orders') }}" class="dugme">Generisi izvestaj</a>
 <div class="table">
     <table>
         <thead>
