@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td><label for="">Datum:</label></td>
-                    <td><input type="date" name="datum" value="{{ $rezervacija->datum }}"></td>
+                    <td><input type="date" name="datum" value="{{ $rezervacija->datum->format('Y-m-d') }}"></td>
                 </tr>
                 <tr>
                     <td><button type="submit" class="dugme">Potvrdi</button></td>
@@ -51,7 +51,6 @@
                 @endforeach                
             </tbody>
         </table>
-        <h2>Ukupno: {{ $total }}</h2>
     </div>
 </div>
 @endsection
