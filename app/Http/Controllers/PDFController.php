@@ -21,6 +21,6 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('pdf.orders', $data);
 
-        return $pdf->download('document.pdf');
+        return $pdf->download('radni_nalog.pdf');
     }
 }

@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .radni_nalog
+        {
+            column-gap: 2em;
+        }
+    </style>
     <title>{{$title}}</title>
 </head>
 <body>
@@ -13,10 +19,10 @@
     <p>Datum: {{ $o->datum }}</p>
     <p>Adresa: {{ $o->adresa }}</p>
 
-            <table>
+            <table class="radni_nalog">
                 <thead>
                     <th>Naziv artikla</th>
-                    <th>Količina</th>
+                    <th>Kolicina</th>
                 </thead>
                 <tbody>
                     @foreach($o->stavkas as $s)
